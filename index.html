@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Minute - Defensa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/dracula.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&family=TASA+Explorer:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'Zagora';
+      src: url('Zagora.ttf') format('truetype'),
+           url('Zagora.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'PervitinaDex';
+      src: url('Pervitina-Dex-FFP.ttf') format('truetype'),
+           url('PervitinaDex.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    :root {
+      --dracula-bg: #181920;
+      --dracula-card: rgba(38, 40, 56, 0.95);
+      --dracula-purple: #bd93f9;
+      --dracula-pink: #ff79c6;
+      --dracula-yellow: #ffee8c;
+      --dracula-cyan: #8be9fd;
+      --dracula-green: #50fa7b;
+      --accent-gold: #ffb86c;
+      --gold-gradient: linear-gradient(135deg, #ffe082 0%, #ffb86c 50%, #ff80ab 100%);
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: var(--dracula-bg) !important;
+      font-family: 'TASA Explorer', 'Segoe UI', Roboto, sans-serif;
+      color: #ffffff !important;
+      word-break: normal;
+      hyphens: none;
+    }
+
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .reveal {
+      font-family: 'TASA Explorer', sans-serif;
+      position: relative;
+      z-index: 1;
+      background: transparent !important;
+    }
+
+    .reveal .slides, 
+    .reveal .slides section, 
+    .reveal .backgrounds, 
+    .reveal .slide-background {
+      background: transparent !important;
+    }
+
+    .reveal .slides section {
+      box-sizing: border-box;
+      padding: 10px 20px !important;
+    }
+
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: 'Zagora', 'Segoe UI', sans-serif !important;
+      color: var(--dracula-pink) !important;
+      text-transform: none;
+      font-weight: normal;
+      letter-spacing: 1px;
+      margin-top: 0;
+      text-shadow: 0 0 18px rgba(255, 121, 198, 0.5);
+    }
+
+    .reveal h2 {
+      font-size: 1.45em;
+      border-bottom: 2px solid var(--accent-gold);
+      padding-bottom: 5px;
+      margin-bottom: 14px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .title-zagora-gold {
+      font-family: 'Zagora', sans-serif !important;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px rgba(255, 184, 108, 0.4));
+    }
+
+    /* Tarjetas */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--dracula-card);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 184, 108, 0.4);
+      border-radius: 12px;
+      padding: 12px 8px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+      text-align: center;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--dracula-pink));
+    }
+
+    .card i {
+      font-size: 1.5em;
+      color: var(--accent-gold);
+      margin-bottom: 4px;
+      filter: drop-shadow(0 0 10px rgba(255, 184, 108, 0.6));
+    }
+
+    .card h4 {
+      font-family: 'Special Gothic Expanded One', sans-serif;
+      color: var(--dracula-yellow);
+      margin: 4px 0;
+      font-size: 0.72em;
+      line-height: 1.25;
+      letter-spacing: 0.3px;
+      word-wrap: break-word;
+    }
+
+    .card p {
+      font-family: 'TASA Explorer', sans-serif;
+      font-size: 0.65em;
+      line-height: 1.25;
+      margin: 0;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .sub-role {
+      display: block;
+      font-size: 0.85em;
+      color: var(--dracula-cyan);
+      margin-top: 3px;
+      font-weight: bold;
+    }
+
+    .identity-content-box {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .color-swatch-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 6px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    /*  Frontend  */
+    .frontend-right-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+    }
+
+    .color-boxes-row-compact {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+    }
+
+    .color-box-mini {
+      border-radius: 8px;
+      padding: 6px 4px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      font-size: 0.58em;
+      font-family: monospace;
+      font-weight: bold;
+    }
+
+    .font-compact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .font-compact-item {
+      background: rgba(0,0,0,0.3);
+      border-left: 3px solid var(--accent-gold);
+      padding: 4px 8px;
+      text-align: left;
+      border-radius: 4px;
+      font-size: 0.62em;
+    }
+
+    /* coso blender */
+    .img-container-3d {
+      width: 100%;
+      background: #0d0e12;
+      border: 1px solid rgba(255, 184, 108, 0.4);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .img-container-3d img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* FODA  */
+    .foda-comp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .foda-comp-card {
+      background: var(--dracula-card);
+      border-radius: 12px;
+      padding: 14px 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+      border-top: 4px solid var(--accent-gold);
+    }
+
+    .foda-comp-card h4 {
+      font-family: 'Special Gothic Expanded One', sans-serif;
+      margin: 0 0 8px 0;
+      font-size: 0.78em;
+      color: var(--dracula-yellow);
+    }
+
+    .foda-comp-card ul {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 0.62em;
+      color: #ffffff;
+      line-height: 1.35;
+    }
+
+    .market-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .stat-badge {
+      background: var(--dracula-card);
+      border: 1px solid rgba(255, 184, 108, 0.4);
+      border-radius: 12px;
+      padding: 14px 10px;
+      text-align: center;
+    }
+
+    .stat-badge .number {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: var(--accent-gold);
+      display: block;
+      text-shadow: 0 0 10px rgba(255, 184, 108, 0.4);
+    }
+
+    .stat-badge .label {
+      font-size: 0.68em;
+      color: #ffffff;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 1. PORTADA -->
+    <section>
+      <img src="minute.png" alt="Minute Logo" style="width: 190px; height: 190px; object-fit: contain; margin-bottom: 10px; filter: drop-shadow(0 0 18px rgba(255,121,198,0.7));">
+      <h1 class="title-zagora-gold" style="font-size: 2.8em; margin-bottom: 4px;">MINUTE</h1>
+      <p style="font-size: 0.75em; color: var(--dracula-yellow); margin-top: 15px; font-weight: 600; letter-spacing: 1px;">
+        Proyecto de Egreso ✦ 2026
+      </p>
+    </section>
+
+    <!-- 2. MIEMBROS FUNDADORES -->
+    <section>
+      <h2>Miembros Fundadores</h2>
+      <div class="grid-container" style="grid-template-columns: repeat(5, 1fr);">
+        <div class="card">
+          <i class="fa-solid fa-code"></i>
+          <h4>Lucas Abergo</h4>
+          <p>Backend</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-terminal"></i>
+          <h4>Felipe Usanza</h4>
+          <p>Admin. de sistemas</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-database"></i>
+          <h4>Mariano Rivadavia</h4>
+          <p>Backend <span class="sub-role">Base de Datos</span></p>
+        </div>
+        <div class="card">
+          <i class="fa-brands fa-html5"></i>
+          <h4>Daiara Giovannini</h4>
+          <p>Frontend <span class="sub-role">Diseño</span></p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-paint-brush"></i>
+          <h4>Liam Tato</h4>
+          <p>Frontend <span class="sub-role">Diseño</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. HERRAMIENTAS UTILIZADAS -->
+    <section>
+      <h2>Herramientas Utilizadas</h2>
+      <div class="grid-container" style="grid-template-columns: repeat(4, 1fr); gap: 12px;">
+        <div class="card">
+          <i class="fa-solid fa-wand-magic-sparkles" style="color: #8be9fd;"></i>
+          <h4>Gemini</h4>
+          <p>Consultas</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-video" style="color: #ff79c6;"></i>
+          <h4>Jitsi / Jami</h4>
+          <p>Reuniones virtuales</p>
+        </div>
+        <div class="card">
+          <i class="fa-brands fa-github" style="color: #f8f8f2;"></i>
+          <h4>GitHub</h4>
+          <p>Control de versiones</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-list-check" style="color: #bd93f9;"></i>
+          <h4>Taiga</h4>
+          <p>Gestión de proyecto</p>
+        </div>
+        <div class="card">
+          <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i>
+          <h4>WhatsApp</h4>
+          <p>Comunicación</p>
+        </div>
+        <div class="card">
+          <i class="fa-brands fa-google-drive" style="color: #ffb86c;"></i>
+          <h4>Google Drive</h4>
+          <p>Documentación</p>
+        </div>
+        <div class="card" style="grid-column: span 2;">
+          <i class="fa-solid fa-cloud-arrow-up" style="color: #50fa7b;"></i>
+          <h4>Backblaze</h4>
+          <p>Almacenamiento remoto de backups</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. IDENTIDAD DE LA EMPRESA -->
+    <section>
+      <h2>Identidad de la Empresa</h2>
+      <div class="grid-container">
+        <div class="card">
+          <div class="identity-content-box">
+            <img src="minute.png" alt="Logo" style="max-height: 50px; object-fit: contain;">
+          </div>
+          <h4>Logo</h4>
+          <p style="margin-top: 4px;">Símbolo de inteligencia y juego de palabras.</p>
+        </div>
+        <div class="card">
+          <div class="identity-content-box">
+            <span class="title-zagora-gold" style="font-size: 1.4em;">Minute</span>
+          </div>
+          <h4>Nombre</h4>
+          <p style="margin-top: 4px;">Optimización del tiempo y detalles.</p>
+        </div>
+        <div class="card">
+          <div class="identity-content-box" style="gap: 6px;">
+            <span class="color-swatch-circle" style="background: #ffb86c;" title="Dorado"></span>
+            <span class="color-swatch-circle" style="background: #282a36;" title="Oscuro"></span>
+            <span class="color-swatch-circle" style="background: #ff79c6;" title="Violeta"></span>
+          </div>
+          <h4>Estética</h4>
+          <p style="margin-top: 4px;">Dorado combinado con tonos oscuros.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MISIÓN, VISIÓN Y VALORES -->
+    <section>
+      <h2>Misión, Visión y Valores</h2>
+      <div class="grid-container">
+        <div class="card">
+          <i class="fa-solid fa-bullseye"></i>
+          <h4>Misión</h4>
+          <p>Diseñar plataformas web que encajen perfectamente con lo que cada negocio precisa.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-eye"></i>
+          <h4>Visión</h4>
+          <p>Consolidarnos referentes del desarrollo web en Uruguay.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-handshake"></i>
+          <h4>Valores</h4>
+          <p>Trato cercano, confidencialidad y calidad.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FORMACIÓN Y MODELO DE NEGOCIO -->
+    <section>
+      <section>
+        <h2>Formación de la Empresa</h2>
+        <div class="grid-container">
+          <div class="card">
+            <i class="fa-solid fa-scale-balanced"></i>
+            <h4>S.R.L.</h4>
+            <p>Menos gastos operativos.</p>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-calculator"></i>
+            <h4>Costo por Hora</h4>
+            <p>Valor base de $1.000 UYU para cubrir constitución y salarios.</p>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h4>Viabilidad</h4>
+            <p>Costo de FitPower estimado de ~$304.000 UYU.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Modelo de Negocios</h2>
+        <div class="grid-container">
+          <div class="card">
+            <i class="fa-solid fa-gem"></i>
+            <h4>Propuesta de Valor</h4>
+            <p>Nos ocupamos de todas las etapas de desarrollo y mantenimiento.</p>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-building-user"></i>
+            <h4>Clientes Objetivo</h4>
+            <p>Negocios y organizaciones que quieren su propia plataforma digital.</p>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-list-check"></i>
+            <h4>Relación con el Cliente</h4>
+            <p>Comunicación cercana y avances constantes.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- 7. ANÁLISIS DE MERCADO Y FODA -->
+    <section>
+      <section>
+        <h2>Análisis de Mercado</h2>
+        <div class="one-col" style="max-width: 900px; margin: 0 auto;">
+          <div class="market-stats-grid">
+            <div class="stat-badge">
+              <span class="number" data-target="10" data-suffix="">0</span>
+              <span class="label">Gimnasios Entrevistados</span>
+            </div>
+            <div class="stat-badge">
+              <span class="number" data-target="10" data-suffix="%">0%</span>
+              <span class="label">Poseen Sitio Web (1 de 10)</span>
+            </div>
+            <div class="stat-badge">
+              <span class="number" data-target="60" data-suffix="%">0%</span>
+              <span class="label">Usa Software Comercial</span>
+            </div>
+            <div class="stat-badge">
+              <span class="number" data-target="50" data-suffix="%">0%</span>
+              <span class="label">Lo usan parcialmente</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FODA General -->
+      <section data-transition="zoom-in fade-out">
+        <h2>Estructura de Análisis FODA</h2>
+        <div class="grid-container" style="grid-template-columns: 1fr 1fr;">
+          <div class="card" style="border-top: 4px solid var(--dracula-green);">
+            <i class="fa-solid fa-shield-halved" style="color: var(--dracula-green); font-size: 1.4em; margin-bottom: 2px;"></i>
+            <h3 style="color: var(--dracula-green) !important; margin: 0; font-size: 1.1em;">Fortalezas</h3>
+            <p>Factores internos positivos y ventajas competitivas del proyecto.</p>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--accent-gold);">
+            <i class="fa-solid fa-lightbulb" style="color: var(--accent-gold); font-size: 1.4em; margin-bottom: 2px;"></i>
+            <h3 style="color: var(--accent-gold) !important; margin: 0; font-size: 1.1em;">Oportunidades</h3>
+            <p>Factores externos del entorno para aprovechar y crecer.</p>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--dracula-pink);">
+            <i class="fa-solid fa-bug" style="color: var(--dracula-pink); font-size: 1.4em; margin-bottom: 2px;"></i>
+            <h3 style="color: var(--dracula-pink) !important; margin: 0; font-size: 1.1em;">Debilidades</h3>
+            <p>Limitaciones internas que debemos gestionar y superar.</p>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--dracula-cyan);">
+            <i class="fa-solid fa-triangle-exclamation" style="color: var(--dracula-cyan); font-size: 1.4em; margin-bottom: 2px;"></i>
+            <h3 style="color: var(--dracula-cyan) !important; margin: 0; font-size: 1.1em;">Amenazas</h3>
+            <p>Riesgos externos del mercado que debemos monitorear.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FORTALEZAS -->
+      <section data-transition="convex">
+        <h2 style="color: var(--dracula-green) !important; border-bottom-color: var(--dracula-green);">
+          <i class="fa-solid fa-shield-halved"></i> Fortalezas
+        </h2>
+        <div class="foda-comp-grid">
+          <div class="foda-comp-card" style="border-top-color: var(--dracula-green);">
+            <h4><i class="fa-solid fa-building"></i> Nuestra Empresa</h4>
+            <ul>
+              <li>Conocimiento directo del nicho investigado.</li>
+              <li>Integración de marketing y gestión en un solo canal.</li>
+              <li>Flexibilidad para adaptar la solución al cliente.</li>
+            </ul>
+          </div>
+          <div class="foda-comp-card" style="border-top-color: var(--dracula-green);">
+            <h4><i class="fa-solid fa-users-rectangle"></i> Competencia</h4>
+            <ul>
+              <li>Reconocimiento y trayectoria en el mercado local.</li>
+              <li>Costos de suscripción bajos y alcance masivo.</li>
+              <li>Sistemas completos e intuitivos para casos estándar.</li>
+            </ul>
+          </div>
+          <div class="foda-comp-card" style="border-top-color: var(--dracula-green);">
+            <h4><i class="fa-solid fa-bolt"></i> FitPower (Producto)</h4>
+            <ul>
+              <li>Diseño moderno, limpio y 100% responsivo.</li>
+              <li>Base de datos aislada e individual por cliente.</li>
+              <li>Código escalable con soporte directo y rápido.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEBILIDADES -->
+      <section data-transition="convex">
+        <h2 style="color: var(--dracula-pink) !important; border-bottom-color: var(--dracula-pink);">
+          <i class="fa-solid fa-bug"></i> Debilidades
+        </h2>
+        <div class="foda-comp-grid">
+          <div class="foda-comp-card" style="border-top-color: var(--dracula-pink);">
+            <h4><i class="fa-solid fa-building"></i> Nuestra Empresa</h4>
+            <ul>
+              <li>Inexperiencia profesional inicial del equipo.</li>
+              <li>Mayor tiempo requerido para entregar desarrollos.</li>
+              <li>Inversión inicial más alta que soluciones estándar.</li>
+            </ul>
+          </div>
+          <div class="foda-comp-card" style="border-top-color: var(--dracula-pink);">
+            <h4><i class="fa-solid fa-users-rectangle"></i> Competencia</h4>
+            <ul>
+              <li>Interfases genéricas y sobrecargadas.</li>
+              <li>Sin personalización ni marca propia del gimnasio.</li>
+              <li>50% de clientes debe usar herramientas externas.</li>
+            </ul>
+          </div>
+          <div class="foda-comp-card" style="border-top-color: var(--dracula-pink);">
+            <h4><i class="fa-solid fa-bolt"></i> FitPower (Producto)</h4>
+            <ul>
+              <li>Primer desarrollo entregado sin historial previo.</li>
+              <li>Sin aplicación nativa en tiendas de descarga.</li>
+              <li>Requiere estrategia adicional de posicionamiento SEO.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- OPORTUNIDADES -->
+      <section data-transition="convex">
+        <h2 style="color: var(--accent-gold) !important; border-bottom-color: var(--accent-gold);">
+          <i class="fa-solid fa-lightbulb"></i> Oportunidades
+        </h2>
+        <div class="foda-comp-grid">
+          <div class="foda-comp-card" style="border-top-color: var(--accent-gold);">
+            <h4><i class="fa-solid fa-building"></i> Nuestra Empresa</h4>
+            <ul>
+              <li>Escalabilidad hacia otros sectores de la salud.</li>
+              <li>Alta demanda por software representativo.</li>
+              <li>Captar clientes descontentos con la competencia.</li>
+            </ul>
+          </div>
+          <div class="foda-comp-card" style="border-top-color: var(--accent-gold);">
+            <h4><i class="fa-solid fa-users-rectangle"></i> Competencia</h4>
+            <ul>
+              <li>Crecimiento de la digitalización general del rubro.</li>
+              <li>Aumento de la demanda para automatizar cobros.</li>
+              <li>Interés global creciente en el bienestar físico.</li>
+            </ul>
+          </div>
+          <div class="foda-comp-card" style="border-top-color: var(--accent-gold);">
+            <h4><i class="fa-solid fa-bolt"></i> FitPower (Producto)</h4>
+            <ul>
+              <li>Automatización fluida en la gestión diaria.</li>
+              <li>Exclusividad de marca en la zona de cobertura.</li>
+              <li>Atracción de clientes corporativos de mayor tamaño.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AMENAZAS -->
+      <section data-transition="convex">
+        <h2 style="color: var(--dracula-cyan) !important; border-bottom-color: var(--dracula-cyan);">
+          <i class="fa-solid fa-triangle-exclamation"></i> Amenazas
+        </h2>
+        <div class="foda-comp-grid">
+          <div class="foda-comp-card" style="border-top-color: var(--dracula-cyan);">
+            <h4><i class="fa-solid fa-building"></i> Nuestra Empresa</h4>
+            <ul>
+              <li>Falta de popularidad inicial en el sector.</li>
+              <li>Crecimiento rápido de competidores consolidados.</li>
+              <li>Preferencia de ciertos clientes por métodos viejos.</li>
+            </ul>
+          </div>
+          <div class="foda-comp-card" style="border-top-color: var(--dracula-cyan);">
+            <h4><i class="fa-solid fa-users-rectangle"></i> Competencia</h4>
+            <ul>
+              <li>Bajas constantes por no aprovechar el software.</li>
+              <li>Preocupación por la seguridad de datos compartidos.</li>
+              <li>Rigidez para satisfacer requerimientos a medida.</li>
+            </ul>
+          </div>
+          <div class="foda-comp-card" style="border-top-color: var(--dracula-cyan);">
+            <h4><i class="fa-solid fa-bolt"></i> FitPower (Producto)</h4>
+            <ul>
+              <li>Cambios en políticas de navegadores web.</li>
+              <li>Ajustes o fallos en pasarelas de pago integradas.</li>
+              <li>Obsolescencia rápida de librerías de terceros.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- 8. VALOR PARA LA SOCIEDAD Y ESPACIO FÍSICO -->
+    <section>
+      <section>
+        <h2>Valor para la sociedad</h2>
+        <div class="two-col">
+          <div class="card" style="text-align: left;">
+            <p style="font-size:0.78em; margin-bottom: 5px; color:var(--accent-gold); font-weight:bold;"><i class="fa-solid fa-user-gear"></i> Para el Personal</p>
+            <p style="font-size: 0.7em;">Baja la carga horaria de tareas más repetitivas.</p>
+          </div>
+          <div class="card" style="text-align: left;">
+            <p style="font-size:0.78em; margin-bottom: 5px; color:var(--accent-gold); font-weight:bold;"><i class="fa-solid fa-users"></i> Para el Cliente Final</p>
+            <p style="font-size: 0.7em;">Facilita comunicación y hace que el local destaque frente a la competencia.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Espacio Físico (Modelo 3D)</h2>
+        <div class="two-col">
+          <div class="card">
+            <i class="fa-solid fa-door-open"></i>
+            <h4>Planta Baja</h4>
+            <p>Recepción, vestuarios y área de movilidad.</p>
+            <div class="img-container-3d">
+              <img src="1erpiso.jpeg" alt="modelo Planta Baja">
+            </div>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-dumbbell"></i>
+            <h4>Primer Piso</h4>
+            <p>Espacio principal de musculación y salas de entrenamiento funcional.</p>
+            <div class="img-container-3d">
+              <img src="2dopiso.jpeg" alt="modelo Primer Piso">
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- 9. ANTEPROYECTO Y FUNCIONALIDADES -->
+    <section>
+      <section>
+        <h2>Agentes</h2>
+        <div class="grid-container">
+          <div class="card">
+            <i class="fa-solid fa-user"></i>
+            <h4>Socios</h4>
+            <p>Acceso a sus rutinas, clases y estado de cuotas.</p>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-person-running"></i>
+            <h4>Entrenadores</h4>
+            <p>Armar y asignar rutinas.</p>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <h4>Profesores</h4>
+            <p>Control sobre la asistencia a clases grupales.</p>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-user-gear"></i>
+            <h4>Administradores</h4>
+            <p>Control general del negocio.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Funcionalidades Exclusivas</h2>
+        <div class="grid-container">
+          <div class="card">
+            <i class="fa-solid fa-comments"></i>
+            <h4>Reseñas</h4>
+            <p>Opiniones reales de socios.</p>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-calendar-days"></i>
+            <h4>Módulo Profesor</h4>
+            <p>Mejora coordinación de las actividades grupales.</p>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <h4>Control de Inventario</h4>
+            <p>Gestión de stock de los productos que se venden en el local.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- 10. PROGRAMACIÓN FRONTEND -->
+    <section>
+      <h2>Desarrollo Frontend</h2>
+      <div class="two-col">
+        <div class="card" style="text-align: left;">
+          <p style="font-size:0.75em; margin-bottom: 4px; color:var(--accent-gold); font-weight:bold;"><i class="fa-solid fa-palette"></i> Diseño</p>
+          <p style="font-size: 0.65em; margin-bottom: 8px;">Hecho en Figma, se usó como referencia al desarrollar las vistas reales.</p>
+          <p style="font-size:0.75em; margin-bottom: 4px; color:var(--accent-gold); font-weight:bold;"><i class="fa-solid fa-mobile-screen-button"></i> Implementación</p>
+          <p style="font-size: 0.65em; margin: 0;">Se adaptó a celulares, tablets y computadoras.</p>
+        </div>
+
+        <div class="frontend-right-layout">
+          <div class="color-boxes-row-compact">
+            <div class="color-box-mini" style="background: #050608; border: 1px solid #6272a4; color: #ffffff;">
+              Fondo<br><span>#050608</span>
+            </div>
+            <div class="color-box-mini" style="background: #4A28C4; color: #fff;">
+              Primario<br>#4A28C4
+            </div>
+            <div class="color-box-mini" style="background: #E5ACFF; color: #282a36;">
+              Acento<br>#E5ACFF
+            </div>
+          </div>
+
+          <div class="font-compact-list">
+            <div class="font-compact-item" style="font-family: 'PervitinaDex', sans-serif; color: var(--dracula-pink);">
+            Pervitina Dex
+            </div>
+            <div class="font-compact-item" style="font-family: 'Special Gothic Expanded One', sans-serif; color: var(--dracula-yellow);">
+            Special Gothic Expanded One
+            </div>
+            <div class="font-compact-item" style="font-family: 'TASA Explorer', sans-serif; color: #ffffff;">
+            TASA Explorer
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. PROGRAMACIÓN BACKEND -->
+    <section>
+      <h2>Desarrollo Backend</h2>
+      <div class="grid-container">
+        <div class="card">
+          <i class="fa-solid fa-layer-group"></i>
+          <h4>Modelo en Capas</h4>
+          <p>Separa cada responsabilidad para facilitar cambios.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h4>Control de Accesos</h4>
+          <p>Validación de roles en cada ruta para proteger las partes de administración.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-lock"></i>
+          <h4>Seguridad</h4>
+          <p>Protección contra accesos indebidos y cifrado para credenciales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. ADMINISTRACIÓN DE SISTEMAS -->
+    <section>
+      <section>
+        <h2>Administración de Sistemas</h2>
+        <div class="card" style="text-align: left; max-width: 950px; margin: 0 auto;">
+          <h4 style="font-size: 0.85em; color: var(--accent-gold);"><i class="fa-solid fa-server"></i> Relevamiento e Infraestructura</h4>
+          <p style="font-size: 0.72em; line-height: 1.4;">
+            Desplegado sobre el sistema operativo <strong>OpenSUSE</strong> dentro de un VPS contratado en <strong>VPSDime</strong>.
+          </p>
+          <ul style="font-size: 0.65em; color: #ffffff; margin-top: 8px; padding-left: 18px;">
+            <li><strong>OpenSUSE:</strong> Abundancia de documentación y modelo de versionado <em>rolling release</em> (versión única en constante actualización sin pérdida de soporte).</li>
+            <li><strong>VPSDime:</strong> Bajo costo de operación respecto a la competencia manteniendo calidad y soporte nativo para OpenSUSE.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Configuración del Sistema</h2>
+        <div class="card" style="text-align: left; max-width: 950px; margin: 0 auto;">
+          <h4 style="font-size: 0.85em; color: var(--dracula-pink);"><i class="fa-solid fa-user-shield"></i> Filosofía de Menor Privilegio</h4>
+          <p style="font-size: 0.7em; line-height: 1.4;">
+            Cada usuario, servicio y proceso posee estrictamente los permisos indispensables para cumplir su función.
+          </p>
+          <p style="font-size: 0.7em; line-height: 1.4; margin-top: 8px;">
+            Esta lógica se extiende al tráfico de datos: los procesos internos deben ser habilitados manualmente para emitir o recibir información. Así, en caso de vulnerabilidad, se mitiga drásticamente el radio de impacto.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Servicios Utilizados</h2>
+        <div class="two-col">
+          <div class="card">
+            <i class="fa-solid fa-gears" style="color: var(--accent-gold);"></i>
+            <h4>Apache</h4>
+            <p>Motor web sobre el cual corre la aplicación, actuando como intermediario entre los procesos del sistema.</p>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-database" style="color: var(--dracula-cyan);"></i>
+            <h4>MariaDB</h4>
+            <p>Servidor de base de datos encargado de almacenar y organizar la información ingresada por los usuarios.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Copias de Seguridad</h2>
+        <div class="card" style="text-align: left; max-width: 950px; margin: 0 auto;">
+          <h4 style="font-size: 0.85em; color: var(--dracula-green);"><i class="fa-solid fa-cloud-arrow-up"></i> Sistema de Backups</h4>
+          <p style="font-size: 0.7em; line-height: 1.4;">
+            Mecanismo automatizado que garantiza la disponibilidad de la base de datos ante cualquier eventualidad, respaldando la información periódicamente de forma local y en la nube.
+          </p>
+          <p style="font-size: 0.7em; line-height: 1.4; margin-top: 8px;">
+            Además de las tareas programadas, los usuarios habilitados pueden ejecutar respaldos manuales a demanda.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Centro de Cómputos (ABML)</h2>
+        <div class="card" style="text-align: left; max-width: 950px; margin: 0 auto;">
+          <h4 style="font-size: 0.85em; color: var(--dracula-yellow);"><i class="fa-solid fa-desktop"></i> Interfaz de Administración</h4>
+          <p style="font-size: 0.7em; line-height: 1.4;">
+            Herramienta gráfica desarrollada para facilitar tareas operativas a usuarios sin conocimientos técnicos avanzados.
+          </p>
+          <p style="font-size: 0.7em; line-height: 1.4; margin-top: 8px;">
+            Permite administrar la actualización de la aplicación web y la gestión integral de copias de seguridad de forma amigable e intuitiva.
+          </p>
+        </div>
+      </section>
+    </section>
+
+    <!-- CIERRE -->
+    <section>
+      <img src="minute.png" alt="Minute Logo" class="floating-logo" style="width: 180px; height: 180px; object-fit: contain; margin-bottom: 10px; filter: drop-shadow(0 0 18px rgba(255,121,198,0.7));">
+      <h1 class="title-zagora-gold" style="font-size: 2.5em; margin-bottom: 4px;">Gracias por escuchar</h1>
+      <p style="font-size: 0.8em; color: var(--dracula-yellow); margin-top: 20px; font-weight: 600; letter-spacing: 1px;">
+        MINUTE S.R.L.
+      </p>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    center: true,
+    hash: true,
+    width: 1280,
+    height: 720,
+    margin: 0.08,
+    minScale: 0.2,
+    maxScale: 2.0,
+    transition: 'slide',
+    backgroundTransition: 'fade'
+  });
+
+  // Partículas
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let particlesArray = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 4 + 2;
+      this.speedX = (Math.random() - 0.5) * 0.8;
+      this.speedY = (Math.random() - 0.5) * 0.8;
+      this.color = Math.random() > 0.5 ? 'rgba(255, 121, 198, 0.95)' : 'rgba(255, 184, 108, 0.95)';
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x > canvas.width) this.x = 0;
+      if (this.x < 0) this.x = canvas.width;
+      if (this.y > canvas.height) this.y = 0;
+      if (this.y < 0) this.y = canvas.height;
+    }
+    draw() {
+      ctx.fillStyle = this.color;
+      ctx.shadowBlur = 14;
+      ctx.shadowColor = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function initParticles() {
+    particlesArray = [];
+    for (let i = 0; i < 80; i++) {
+      particlesArray.push(new Particle());
+    }
+  }
+  initParticles();
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particlesArray.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+
+  // Contador animado 
+  let statsAnimated = false;
+  Reveal.on('slidechanged', event => {
+    const statsGrid = event.currentSlide.querySelector('.market-stats-grid');
+    if (statsGrid && !statsAnimated) {
+      statsAnimated = true;
+      const numbers = statsGrid.querySelectorAll('.number');
+      numbers.forEach(numbersItem => {
+        const target = +numbersItem.getAttribute('data-target');
+        const suffix = numbersItem.getAttribute('data-suffix') || '';
+        let count = 0;
+        const speed = target / 25;
+        const updateCount = () => {
+          count += speed;
+          if (count < target) {
+            numbersItem.innerText = Math.ceil(count) + suffix;
+            setTimeout(updateCount, 35);
+          } else {
+            numbersItem.innerText = target + suffix;
+          }
+        };
+        updateCount();
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
